@@ -6,3 +6,8 @@ Thumbs.db
 !.env.example
 edit/cache/
 render-cache/
+
+# Blender backups and render frames (encoded MP4s are versioned)
+*.blend1
+export/shots/final/*/
+export/render_log.txt
