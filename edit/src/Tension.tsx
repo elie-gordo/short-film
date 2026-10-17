@@ -13,9 +13,10 @@ import { Story } from "./Story";
 import { archivo, azeret, inter, NIGHT, OXIDE, PAPER } from "./theme";
 
 export const FPS = 30;
-export const TOTAL_FRAMES = 900;
+// 31.5 s: the end card holds long enough for the last voice-over line to breathe.
+export const TOTAL_FRAMES = 945;
 // Without the end card the film stops after P10's slowed tail.
-export const NO_END_CARD_FRAMES = 840;
+export const NO_END_CARD_FRAMES = 855;
 
 
 // Master timeline from blender/film.py SHOTS (frame 1 = 0 here). Seedance drafts
@@ -166,12 +167,57 @@ export const Tension: React.FC<TensionProps> = ({ withEndCard }) => {
         </Sequence>
       )}
       <AbsoluteFill style={{ background: "#000", opacity: finalFade }} />
-      <Audio
-        src={staticFile("sound.wav")}
-        volume={(f) =>
-          withEndCard ? 1 : interpolate(f, [durationInFrames - 20, durationInFrames], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" })
-        }
-      />
+      <Soundtrack />
     </AbsoluteFill>
+  );
+};
+
+// Voice-over lines (ElevenLabs), each starting just as its headline appears in Story.tsx.
+// `len` is the clip length in frames, used to duck the music under the voice.
+const VOICE = [
+  { src: "vo_01.mp3", at: 8, len: 83 },
+  { src: "vo_02.mp3", at: 206, len: 64 },
+  { src: "vo_03.mp3", at: 320, len: 81 },
+  { src: "vo_04.mp3", at: 491, len: 45 },
+  { src: "vo_05.mp3", at: 561, len: 90 },
+  { src: "vo_06.mp3", at: 750, len: 83 },
+  { src: "vo_07.mp3", at: 840, len: 83 },
+];
+
+const MUSIC_LEVEL = 0.6;
+const MUSIC_DUCKED = 0.27;
+const SFX_LEVEL = 0.45;
+const DUCK_ATTACK = 6;
+const DUCK_RELEASE = 14;
+const END_FADE = 20; // starts after the last voice line in both versions
+
+const voiceActivity = (f: number) =>
+  Math.max(
+    0,
+    ...VOICE.map((v) =>
+      interpolate(f, [v.at - DUCK_ATTACK, v.at, v.at + v.len, v.at + v.len + DUCK_RELEASE], [0, 1, 1, 0], {
+        extrapolateLeft: "clamp",
+        extrapolateRight: "clamp",
+      }),
+    ),
+  );
+
+const Soundtrack: React.FC = () => {
+  const { durationInFrames } = useVideoConfig();
+  const tail = (f: number) =>
+    interpolate(f, [durationInFrames - END_FADE, durationInFrames], [1, 0], { extrapolateLeft: "clamp", extrapolateRight: "clamp" });
+  return (
+    <>
+      <Audio
+        src={staticFile("musique.mp3")}
+        volume={(f) => (MUSIC_LEVEL - (MUSIC_LEVEL - MUSIC_DUCKED) * voiceActivity(f)) * tail(f)}
+      />
+      <Audio src={staticFile("sfx.wav")} volume={(f) => SFX_LEVEL * tail(f)} />
+      {VOICE.map((v) => (
+        <Sequence key={v.src} from={v.at}>
+          <Audio src={staticFile(v.src)} />
+        </Sequence>
+      ))}
+    </>
   );
 };

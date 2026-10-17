@@ -10,5 +10,6 @@ Légende origine : **Humain** (réalisé par moi) · **IA** (généré, précise
 | Montage, étalonnage, grain, motion design (titres, annotations, chapitres), écran de fin P11 | Humain | Remotion 4 (`edit/`) | propre | oui | non | — |
 | Textes du récit et annotations techniques (caractéristiques inventées) | Humain + IA | Claude Code, validé par Elliott Lanza | propre | oui | non | — |
 | Polices Archivo Narrow, Azeret Mono, Inter | Tiers | Google Fonts via `@remotion/google-fonts` | SIL Open Font License 1.1 | oui | non | fonts.google.com |
-| Sound design (fond d'ambiance, ressorts, déclic, ampoule) | Humain | synthèse procédurale `script/sound.py` | propre | oui | non | — |
-| Musique | — | aucune | — | — | — | — |
+| Bruitages (ressorts, déclic, ampoule) | Humain | synthèse procédurale `script/sound.py` | propre | oui | non | — |
+| Voix off, 7 phrases (`assets/audio/vo/`) | IA | ElevenLabs, Voice Design + Eleven v3 | conditions ElevenLabs (offre gratuite) | non (offre gratuite) | oui, mention « elevenlabs.io » en offre gratuite | elevenlabs.io |
+| Musique instrumentale (`assets/audio/music/musique.mp3`, 31 premières secondes) | IA | Suno | conditions Suno (offre gratuite) | non (offre gratuite) | non | suno.com |

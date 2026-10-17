@@ -1,6 +1,6 @@
 # TENSION : suivi des tâches
 
-Teaser de 30 s en 16:9 pour TENSIL, lampe de bureau fictive créée pour le portfolio. **Livré le 17/10/2026.**
+Teaser de 31,5 s en 16:9 pour TENSIL, lampe de bureau fictive créée pour le portfolio. **Livré le 17/10/2026.**
 
 ## Fait
 - [x] Audit, direction et choix du concept « TENSION ».
@@ -13,7 +13,8 @@ Teaser de 30 s en 16:9 pour TENSIL, lampe de bureau fictive créée pour le port
 - [x] Montage Remotion (`edit/`) : timeline calée sur `film.py`, étalonnage, grain, vignettage, fin ralentie de P10.
 - [x] Motion design : récit en 4 chapitres, titres, annotations techniques, format cinéma, barre de chapitres.
 - [x] Écran de fin P11 et version sans écran de fin.
-- [x] Sound design procédural (`script/sound.py`), sans musique ; environ −17 dB RMS, crête à −1 dBFS.
+- [x] Bruitages procéduraux (`script/sound.py --sfx-only`).
+- [x] Voix off ElevenLabs (7 phrases calées sur les titres) et musique Suno (`assets/audio/`), musique baissée sous la voix ; durée portée à 31,5 s.
 - [x] Exports : master, version web, image d'aperçu, médias du portfolio (`export/web/`).
 - [x] Documentation : README, étude de cas, portfolio, crédits, coûts.
 

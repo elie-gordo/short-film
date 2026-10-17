@@ -1,6 +1,7 @@
 """Procedural sound design for the TENSION teaser (30 s, no third-party audio).
 
-Usage: python script/sound.py edit/public/sound.wav
+Usage: python script/sound.py edit/public/sfx.wav --sfx-only   (effects only, used with the music)
+       python script/sound.py edit/public/sound.wav              (effects + synthetic drone, no music)
 Cue times are in seconds on the master timeline (30 fps, see blender/film.py SHOTS).
 """
 import sys
@@ -9,7 +10,7 @@ import wave
 import numpy as np
 
 SR = 48000
-DURATION = 30.0
+DURATION = 31.5
 LIMITER_DRIVE = 2.5
 rng = np.random.default_rng(7)
 t = np.arange(int(SR * DURATION)) / SR
@@ -93,8 +94,9 @@ def flicker(start, gain):
     return click(start, gain, 3200) + hum(start, start + 0.12) * 1.5
 
 
-def build():
-    mix = drone()
+def build(with_drone):
+    # Without the drone (music takes its place) the effects keep their natural dynamics.
+    mix = drone() if with_drone else np.zeros_like(t)
     mix += creak(2.0, 2.2, 38, 0.10)    # P02 spring macro
     mix += click(4.6, 0.12, 1500)       # P03 cap tick
     mix += creak(10.5, 3.2, 26, 0.22)   # P05 lower arm lifts
@@ -107,19 +109,20 @@ def build():
     mix += flicker(24.2, 0.25)          # P10 flicker x2
     mix += flicker(24.55, 0.25)
     mix += click(24.95, 0.30, 2800)
-    mix += hum(24.95, 29.6)             # bulb on through the end card
+    mix += hum(24.95, 30.8)             # bulb on through the end card
     fade = np.clip((DURATION - t) / 1.5, 0, 1)
     mix *= fade
     mix /= np.max(np.abs(mix))
-    mix = np.tanh(mix * LIMITER_DRIVE)  # soft limiter: lifts RMS toward web loudness
+    if with_drone:
+        mix = np.tanh(mix * LIMITER_DRIVE)  # soft limiter: lifts RMS toward web loudness
     mix /= np.max(np.abs(mix)) / 0.79   # about -2 dBFS peak (AAC overshoots)
     left = mix
     right = np.roll(mix, int(0.0004 * SR))  # slight width
     return np.stack([left, right], axis=1)
 
 
-def main(path):
-    data = (build() * 32767).astype(np.int16)
+def main(path, with_drone):
+    data = (build(with_drone) * 32767).astype(np.int16)
     with wave.open(path, "wb") as w:
         w.setnchannels(2)
         w.setsampwidth(2)
@@ -129,4 +132,4 @@ def main(path):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    main(sys.argv[1], with_drone="--sfx-only" not in sys.argv)

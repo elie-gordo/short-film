@@ -6,7 +6,7 @@
 **TENSION — teaser de luxe pour la lampe TENSIL, entre Blender et Seedance**
 
 ## Description courte (≈ 300 caractères)
-Un teaser de 30 s pour TENSIL, une lampe fictive. Une préviz Blender guide un modèle vidéo IA (Seedance 2.5), les plans macro sont rendus en 3D, et le montage, le motion design et le son sont écrits en code. Le film raconte une histoire en quatre chapitres : repos, tension, équilibre, lumière.
+Un teaser d'environ 30 s pour TENSIL, une lampe fictive. Une préviz Blender guide un modèle vidéo IA (Seedance 2.5), les plans macro sont rendus en 3D, le montage et le motion design sont écrits en code, avec une voix off et une musique générées par IA. Le film raconte une histoire en quatre chapitres : repos, tension, équilibre, lumière.
 
 ## Place dans le portfolio
 TENSIL est présentée sous plusieurs angles : le modèle 3D (Blender), la boutique de démonstration (site), la campagne préparée avec n8n, et ce film. Il réutilise la lampe du projet Blender, la palette et les polices de la boutique, et renvoie vers son adresse dans l'écran de fin.
@@ -47,13 +47,13 @@ const TENSIL_FILM: ProjetContenu = {
         'Préviz et macros : Blender 5.2, EEVEE, une caméra par plan sur une timeline de 900 images.',
         'IA vidéo : Seedance 2.5 via Higgsfield, guidé par la vidéo de préviz, les images de début et de fin et les rendus produit.',
         'Montage et motion design : Remotion (React, TypeScript), étalonnage, grain, format cinéma.',
-        'Son : synthèse procédurale en Python, sans musique ni son sous licence.',
+        'Son : voix off ElevenLabs calée sur les titres, musique Suno qui s’efface sous la voix, bruitages synthétisés en Python.',
         'Typographie : Archivo Narrow, Azeret Mono et Inter, reprises de la boutique.',
       ],
     },
     {
       titre: 'Résultat',
-      paragraphes: ['Un film de 30 s en 1080p avec son, pour 72 crédits de génération.'],
+      paragraphes: ['Un film de 31 s en 1080p avec voix off et musique, pour 72 crédits de génération.'],
       points: [
         'Récit : 4 chapitres, 6 titres et 4 annotations techniques, chaque texte placé dans une zone vide du plan.',
         'Production : 4 plans macro en 3D et 5 plans en IA, sur les mêmes caméras et le même timing.',
@@ -65,11 +65,11 @@ const TENSIL_FILM: ProjetContenu = {
   ],
   etiquettes: {
     domaine: ['Film publicitaire', 'Motion design', 'IA générative', 'Sound design'],
-    outils: ['Blender', 'Seedance', 'Remotion', 'React', 'TypeScript', 'Python', 'Claude Code'],
+    outils: ['Blender', 'Seedance', 'Remotion', 'ElevenLabs', 'Suno', 'TypeScript', 'Claude Code'],
     annee: '2026',
   },
   medias: [
-    { type: 'video', src: `${TENSIL_FILM_MEDIA}/tension-teaser.mp4`, alt: 'Teaser de 30 s : la lampe TENSIL au repos, sous tension, puis allumée', legende: 'Le teaser en entier (30 s, sans son)' },
+    { type: 'video', src: `${TENSIL_FILM_MEDIA}/tension-teaser.mp4`, alt: 'Teaser de 31 s : la lampe TENSIL au repos, sous tension, puis allumée', legende: 'Le teaser en entier (31 s, sans son)' },
     { src: `${TENSIL_FILM_MEDIA}/05-lumiere.webp`, alt: 'La lampe allumée projette une flaque de lumière, titre « Alors seulement, la lumière. »', legende: 'Chapitre IV : la lumière' },
     { src: `${TENSIL_FILM_MEDIA}/03-tension.webp`, alt: 'Le bras de la lampe se lève, titre « Toute sa force tient dans la retenue. »', legende: 'Chapitre II : la tension' },
     { src: `${TENSIL_FILM_MEDIA}/02-ressort.webp`, alt: 'Gros plan sur un ressort avec une annotation technique', legende: 'Annotation technique sur un plan macro' },
@@ -106,7 +106,7 @@ Une IA vidéo produit des images séduisantes, mais elle redessine le produit à
 ## Rôle de l'IA et limites
 - Seedance génère 5 plans en brouillon 480p, agrandis au montage : l'image est plus douce que celle des plans 3D.
 - Les annotations (42 spires, laiton tourné) sont inventées pour le récit, comme la marque.
-- Le son est synthétique et sans musique, par choix de licence.
+- Voix off (ElevenLabs) et musique (Suno) viennent d'offres gratuites : usage non commercial, suffisant pour un portfolio.
 
 ## Coûts
 72 crédits Higgsfield sur un plan Plus (prix du plan à reporter dans `docs/COSTS.md`). Blender, Remotion et le son ne coûtent rien.
@@ -119,14 +119,14 @@ Une IA vidéo produit des images séduisantes, mais elle redessine le produit à
 - Cohérence de marque entre quatre projets.
 
 ## Chiffres clés
-- 30 s, 11 plans, 4 chapitres, 1080p à 30 i/s.
+- 31,5 s, 11 plans, 4 chapitres, 7 phrases de voix off, 1080p à 30 i/s.
 - 5 plans IA et 4 plans 3D, sur une seule timeline.
 - 72 crédits dépensés.
 
 ## Visuels
 | Ordre | Fichier | Montre |
 |---|---|---|
-| 1 | `export/web/tension-teaser.mp4` | le film en entier, sans son (2,3 Mo) |
+| 1 | `export/web/tension-teaser.mp4` | le film en entier, sans son (2,4 Mo) |
 | 2 | `export/web/05-lumiere.webp` | le moment clé : l'allumage |
 | 3 | `export/web/03-tension.webp` | un titre du récit sur un plan IA |
 | 4 | `export/web/02-ressort.webp` | une annotation technique sur un plan 3D |
@@ -143,9 +143,9 @@ Une IA vidéo produit des images séduisantes, mais elle redessine le produit à
 ## Contrôle final (prévu vs produit)
 | Livrable prévu | Produit ? | Remarque |
 |---|---|---|
-| Film de 30 s, 16:9, 1080p | ✅ | `export/master/TENSION_master_1080p.mp4` |
+| Film d'environ 30 s, 16:9, 1080p | ✅ | `export/master/TENSION_master_1080p.mp4` |
 | Montage rythmé et habillage | ✅ | 11 plans, motion design en 4 chapitres |
-| Ambiance sonore | ✅ | sound design synthétisé, sans musique (choix de licence) |
+| Ambiance sonore | ✅ | voix off ElevenLabs, musique Suno, bruitages synthétisés |
 | Plans IA fidèles au produit | ✅ | brouillons 480p ; 1080p non générée (budget) |
 | Écran de fin de marque | ✅ | « Tenue par la tension. » ; version sans écran de fin aussi livrée |
 | Documentation et coûts | ✅ | README, étude de cas, crédits, coûts (prix du plan à compléter) |
