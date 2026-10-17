@@ -31,7 +31,7 @@ Les caractéristiques des annotations (42 spires, laiton tourné…) sont invent
 - **Préviz au service de l'IA :** chaque plan Seedance reçoit la vidéo de préviz Blender (caméra et timing), une image de début, une image de fin et les rendus produit. Le prompt interdit l'image en miroir et toute modification de la lampe.
 - **Pipeline hybride maîtrisé :** 4 plans macro en EEVEE, 5 plans en IA, mêmes caméras et même timeline à 30 i/s (`blender/film.py`).
 - **Motion design de marque :** format cinéma, barre de chapitres, titres révélés mot par mot, annotations techniques façon film horloger (`edit/src/Story.tsx`).
-- **Mixage complet :** voix off (ElevenLabs) calée sur les titres, musique (Suno) qui s'efface sous la voix, bruitages de ressorts, déclic et ampoule synthétisés en Python (`script/sound.py`).
+- **Mixage voix et musique :** voix off (ElevenLabs) calée sur les titres, musique (Suno) qui s'efface automatiquement sous la voix.
 - **Budget piloté :** coût affiché avant chaque génération, 72 crédits dépensés, aucune génération sans accord.
 - **Montage reproductible :** tout le film se reconstruit en commandes.
 
@@ -43,7 +43,7 @@ Les caractéristiques des annotations (42 spires, laiton tourné…) sont invent
 | Remotion | 4.0.536 (React 18, TypeScript) | Montage, étalonnage, grain, motion design, écran de fin, rendu H.264 |
 | ElevenLabs | Voice Design + Eleven v3 | Voix off, 7 phrases générées séparément |
 | Suno | — | Musique instrumentale |
-| Python | 3.11, numpy, Pillow | Bruitages procéduraux, médias web du portfolio |
+| Python | 3.11, numpy, Pillow | Médias web du portfolio |
 | Polices | Archivo Narrow, Azeret Mono, Inter (Google Fonts) | Typographie de la marque TENSIL |
 | Claude Code (Claude Opus 5.5) | — | Scripts, montage, documentation |
 | Matériel | RTX 2050 avec 4 Go de VRAM, 16 Go de RAM, Windows 11 | Rendu local |
@@ -54,7 +54,7 @@ Les caractéristiques des annotations (42 spires, laiton tourné…) sont invent
 3. **Macros EEVEE** : P02, P03, P06, P09 ([`export/shots/final/`](export/shots/final/)).
 4. **Références Seedance** : vidéo de préviz avec poignées de 0,5 s, images de début et de fin ([`export/shots/ref/`](export/shots/ref/)), fiches et prompts ([`storyboard/seedance_shots.md`](storyboard/seedance_shots.md)).
 5. **Génération Seedance** : un brouillon de test (P04), vérifié, puis les quatre autres ([`export/shots/draft/`](export/shots/draft/)).
-6. **Montage et son** : timeline calée sur `film.py`, étalonnage commun, bruitages synthétisés ([`edit/`](edit/), [`script/sound.py`](script/sound.py)).
+6. **Montage** : timeline calée sur `film.py`, étalonnage commun ([`edit/`](edit/)). Des bruitages synthétisés ([`script/sound.py`](script/sound.py)) ont été essayés puis retirés du mixage final.
 7. **Voix et musique** : voix off ElevenLabs (une phrase par titre) et musique Suno ([`assets/audio/`](assets/audio/)). La musique est baissée automatiquement sous la voix, et l'écran de fin est allongé à 31,5 s pour laisser respirer la dernière phrase.
 8. **Motion design** : récit en quatre chapitres, chaque texte placé dans une zone vide du plan et vérifié image par image.
 9. **Exports** : master, version sans écran de fin, version web, médias du portfolio.
@@ -67,7 +67,7 @@ B="C:/Program Files/Blender Foundation/Blender 5.2/blender.exe"
 "$B" -b blender/tensil_film.blend --python blender/film.py -- shot P02
 # montage (Node 18+, Python avec numpy)
 cd edit && npm install
-npm run media            # copie plans, voix et musique dans edit/public, génère les bruitages
+npm run media            # copie plans, voix et musique dans edit/public
 npm run render           # master 31,5 s
 npm run render:no-endcard
 npm run render:web

@@ -47,7 +47,7 @@ const TENSIL_FILM: ProjetContenu = {
         'Préviz et macros : Blender 5.2, EEVEE, une caméra par plan sur une timeline de 900 images.',
         'IA vidéo : Seedance 2.5 via Higgsfield, guidé par la vidéo de préviz, les images de début et de fin et les rendus produit.',
         'Montage et motion design : Remotion (React, TypeScript), étalonnage, grain, format cinéma.',
-        'Son : voix off ElevenLabs calée sur les titres, musique Suno qui s’efface sous la voix, bruitages synthétisés en Python.',
+        'Son : voix off ElevenLabs calée sur les titres, musique Suno qui s’efface sous la voix.',
         'Typographie : Archivo Narrow, Azeret Mono et Inter, reprises de la boutique.',
       ],
     },
@@ -145,7 +145,7 @@ Une IA vidéo produit des images séduisantes, mais elle redessine le produit à
 |---|---|---|
 | Film d'environ 30 s, 16:9, 1080p | ✅ | `export/master/TENSION_master_1080p.mp4` |
 | Montage rythmé et habillage | ✅ | 11 plans, motion design en 4 chapitres |
-| Ambiance sonore | ✅ | voix off ElevenLabs, musique Suno, bruitages synthétisés |
+| Ambiance sonore | ✅ | voix off ElevenLabs, musique Suno |
 | Plans IA fidèles au produit | ✅ | brouillons 480p ; 1080p non générée (budget) |
 | Écran de fin de marque | ✅ | « Tenue par la tension. » ; version sans écran de fin aussi livrée |
 | Documentation et coûts | ✅ | README, étude de cas, crédits, coûts (prix du plan à compléter) |

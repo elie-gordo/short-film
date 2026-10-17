@@ -13,7 +13,7 @@ Teaser de 31,5 s en 16:9 pour TENSIL, lampe de bureau fictive créée pour le po
 - [x] Montage Remotion (`edit/`) : timeline calée sur `film.py`, étalonnage, grain, vignettage, fin ralentie de P10.
 - [x] Motion design : récit en 4 chapitres, titres, annotations techniques, format cinéma, barre de chapitres.
 - [x] Écran de fin P11 et version sans écran de fin.
-- [x] Bruitages procéduraux (`script/sound.py --sfx-only`).
+- [x] Bruitages procéduraux (`script/sound.py`) essayés puis retirés du mixage final.
 - [x] Voix off ElevenLabs (7 phrases calées sur les titres) et musique Suno (`assets/audio/`), musique baissée sous la voix ; durée portée à 31,5 s.
 - [x] Exports : master, version web, image d'aperçu, médias du portfolio (`export/web/`).
 - [x] Documentation : README, étude de cas, portfolio, crédits, coûts.

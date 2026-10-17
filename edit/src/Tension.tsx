@@ -186,7 +186,6 @@ const VOICE = [
 
 const MUSIC_LEVEL = 0.6;
 const MUSIC_DUCKED = 0.27;
-const SFX_LEVEL = 0.45;
 const DUCK_ATTACK = 6;
 const DUCK_RELEASE = 14;
 const END_FADE = 20; // starts after the last voice line in both versions
@@ -212,7 +211,6 @@ const Soundtrack: React.FC = () => {
         src={staticFile("musique.mp3")}
         volume={(f) => (MUSIC_LEVEL - (MUSIC_LEVEL - MUSIC_DUCKED) * voiceActivity(f)) * tail(f)}
       />
-      <Audio src={staticFile("sfx.wav")} volume={(f) => SFX_LEVEL * tail(f)} />
       {VOICE.map((v) => (
         <Sequence key={v.src} from={v.at}>
           <Audio src={staticFile(v.src)} />
