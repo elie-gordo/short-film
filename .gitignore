@@ -11,3 +11,9 @@ render-cache/
 *.blend1
 export/shots/final/*/
 export/render_log.txt
+
+# Remotion edit
+edit/node_modules/
+edit/out/
+# copies of export/shots + generated sound, rebuilt by `npm run media`
+edit/public/

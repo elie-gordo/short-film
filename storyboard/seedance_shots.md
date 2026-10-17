@@ -1,6 +1,6 @@
 # TENSION — fiches de génération Seedance 2.5
 
-> Statut : **prêt, rien de généré.** Aucune génération sans coût affiché par le plugin et accord explicite.
+> Statut : **brouillons 480p générés le 16/10/2026** (72 crédits), utilisés dans le montage final. Fichiers : `export/shots/draft/Pxx_draft1_480p.mp4`. Jobs Higgsfield : P04 `3ecea202`, P05 `ce285e26`, P07 `3ae4bad4`, P08 `b2abe09e`, P10 `5ca0f5b6`. Aucune version 1080p (budget). Les prompts ci-dessous ont été envoyés tels quels (bloc commun + action du plan).
 
 Scène : `blender/tensil_film.blend` (construite par `blender/film.py`). Les références vidéo et images sont dans `export/shots/ref/`. Les images produit sont dans `assets/references/`.
 

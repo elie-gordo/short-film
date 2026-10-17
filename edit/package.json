@@ -1,0 +1,24 @@
+{
+  "name": "tension-edit",
+  "private": true,
+  "scripts": {
+    "media": "node -e \"const fs=require('fs');fs.mkdirSync('public',{recursive:true});for(const p of ['02','03','06','09'])fs.copyFileSync('../export/shots/final/P'+p+'.mp4','public/P'+p+'.mp4');for(const p of ['04','05','07','08','10'])fs.copyFileSync('../export/shots/draft/P'+p+'_draft1_480p.mp4','public/P'+p+'.mp4')\" && python ../script/sound.py public/sound.wav",
+    "studio": "remotion studio src/index.ts",
+    "render": "remotion render src/index.ts Tension ../export/master/TENSION_master_1080p.mp4 --codec h264 --crf 16 --overwrite",
+    "render:no-endcard": "remotion render src/index.ts TensionNoEndCard ../export/master/TENSION_no_endcard_1080p.mp4 --codec h264 --crf 16 --overwrite",
+    "render:web": "remotion render src/index.ts Tension ../export/master/TENSION_web_1080p.mp4 --codec h264 --crf 26 --overwrite",
+    "poster": "remotion still src/index.ts Tension ../export/master/TENSION_poster.jpg --frame 870 --overwrite",
+    "typecheck": "tsc -p ."
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.536",
+    "@remotion/google-fonts": "^4.0.536",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.536"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.31",
+    "typescript": "^7.0.2"
+  }
+}
